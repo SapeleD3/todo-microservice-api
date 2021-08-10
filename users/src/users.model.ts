@@ -2,7 +2,7 @@ import { Request } from 'express';
 import { Document, model, Schema } from 'mongoose';
 
 export interface iUserDocument extends Document {
-  userName: string;
+  email: string;
   password: string;
   joinedAt: Date;
 }
@@ -12,7 +12,7 @@ export interface RequestWithUser extends Request {
 }
 
 const userSchema = new Schema({
-  userName: {
+  email: {
     type: String,
     required: true,
   },

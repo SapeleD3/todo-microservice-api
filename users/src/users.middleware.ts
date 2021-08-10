@@ -9,7 +9,7 @@ const { UNPROCESSABLE_ENTITY, BAD_GATEWAY, NOT_FOUND, UNAUTHORIZED } =
   StatusCodes;
 
 export const UserInputValidationSchema = object({
-  userName: string().min(5).required().trim(),
+  email: string().min(5).required().trim(),
   password: string().min(6).max(1024).required(),
 });
 

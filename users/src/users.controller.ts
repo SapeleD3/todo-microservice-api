@@ -17,9 +17,9 @@ const expiresIn = '9999 years';
  */
 export const register = async (req: Request, res: Response) => {
   try {
-    const { userName, password } = req.body;
-    //check if userName exists in db
-    const existingUser = await User.findOne({ userName });
+    const { email, password } = req.body;
+    //check if email exists in db
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return responseHandler(res, BAD_REQUEST, {
         message: ReasonPhrases.BAD_REQUEST,
@@ -29,7 +29,7 @@ export const register = async (req: Request, res: Response) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await User.create({
-      userName,
+      email,
       password: hashedPassword,
     });
     const { _id } = newUser;
@@ -61,9 +61,9 @@ const INVALID_CREDENTIALS = 'invalid credentials';
  */
 export const login = async (req: Request, res: Response) => {
   try {
-    const { userName, password } = req.body;
-    //check if userName exists in db
-    const user = await User.findOne({ userName });
+    const { email, password } = req.body;
+    //check if email exists in db
+    const user = await User.findOne({ email });
     if (!user) {
       return responseHandler(res, BAD_REQUEST, {
         message: ReasonPhrases.BAD_REQUEST,

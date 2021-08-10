@@ -27,6 +27,7 @@ export const ROUTES = {
   DELETE_TODO: '/todos/:uid/:todoId',
   EDIT_TODO: '/todos/:uid/:todoId',
   GET_USER_TODOS: '/todos/:uid',
+  HOME: '/',
 };
 
 export type ResponseDetails = {

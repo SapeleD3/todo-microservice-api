@@ -1,6 +1,7 @@
 import RateLimiter from 'express-rate-limit';
 import mongoose from 'mongoose';
-import { Response } from 'express';
+import nodemailer from 'nodemailer';
+import { Request, Response } from 'express';
 
 /**
  * Connects service to mongodb
@@ -23,9 +24,9 @@ export async function connectToDB() {
 
 //routes strings
 export const ROUTES = {
-  REGISTER: '/user/register',
-  LOGIN: '/user/login',
-  ME: '/user',
+  CREATE_NOTIFICATION: '/notification',
+  GET_NOTIFICATION: '/notification/:userId',
+  SEND_MAIL: '/notify',
   HOME: '/',
 };
 
@@ -70,3 +71,26 @@ export const MAX_LOGIN_LIMITER = RateLimiter({
   max: 20, // limit each IP to 10 requests every 10 minutes,
   message: 'Too many login attempts, please try again after 10 minutes.',
 });
+
+export const SendMail = async (to: string, subject: string, text: string) => {
+  try {
+    const { SMTP_HOST, SMTP_PORT, SMTP_PASS }: any = process.env;
+    const transport = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: SMTP_PORT,
+      auth: {
+        user: '34aede79aa303e',
+        pass: SMTP_PASS,
+      },
+    });
+    const message = {
+      from: 'todo@email.com',
+      to,
+      subject,
+      text,
+    };
+
+    const info = await transport.sendMail(message);
+    return info;
+  } catch (err) {}
+};
