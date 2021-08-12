@@ -2,10 +2,10 @@ version: '3.8'
 services:
   users:
     container_name: users-svc
-    build: ./users
+    build: ./todo-user-svc
     tty: true
     volumes:
-      - ./users:/app
+      - ./todo-user-svc:/app
     networks:
       - app
     ports:
@@ -14,10 +14,10 @@ services:
       - db
   todos:
     container_name: todos-svc
-    build: ./todos
+    build: ./todo-svc
     tty: true
     volumes:
-      - ./todos:/app
+      - ./todo-svc:/app
     networks:
       - app
     ports:
@@ -26,10 +26,10 @@ services:
       - db
   notification:
     container_name: notify-svc
-    build: ./notifications
+    build: ./todo-notification-svc
     tty: true
     volumes:
-      - ./notifications:/app
+      - ./todo-notification-svc:/app
     networks:
       - app
     ports:
