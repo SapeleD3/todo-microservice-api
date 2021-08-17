@@ -12,30 +12,6 @@ services:
       - '8010:8080'
     depends_on:
       - db
-  todos:
-    container_name: todos-svc
-    build: ./todo-svc
-    tty: true
-    volumes:
-      - ./todo-svc:/app
-    networks:
-      - app
-    ports:
-      - '8011:8080'
-    depends_on:
-      - db
-  notification:
-    container_name: notify-svc
-    build: ./todo-notification-svc
-    tty: true
-    volumes:
-      - ./todo-notification-svc:/app
-    networks:
-      - app
-    ports:
-      - '8012:8080'
-    depends_on:
-      - db
   db:
     container_name: mongo
     image: mongo:4.2.9

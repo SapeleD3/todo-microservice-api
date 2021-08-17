@@ -53,43 +53,6 @@ npm run dev
 
  <br />
 
-- TODO: Hosted = `https://todos-tozs7pshfa-uc.a.run.app`
-
-  service name: todos
-
-  [Service Repo](https://github.com/SapeleD3/todo-svc)
-
-  Routes
-
-  - create todo: POST `/todos`
-
-    req.body = { userId, todo, achieved }
-
-  - get user todos: POST `/todos/:uid`
-  - delete a todo: DELETE `/todos/:uid/:todoId`
-  - edit todo: PUT `/todos/:uid/:todoId`
-
-<br />
-
-- NOTIFICATION: Hosted = `https://notifications-tozs7pshfa-uc.a.run.app`
-
-  service name: notification
-
-  [Service Repo](https://github.com/SapeleD3/todo-notification-svc)
-
-  Routes
-
-  - create notification: POST `/notification`
-
-    req.body = { userId, email, title, description, seen }
-
-  - get notifications: GET `/notification/:userId`
-  - send mail: POST `/notify`
-
-    req.body = { to, subject, text }
-
-<br />
-
 # todo-microservice-api
 
 a Nodejs and Express Microservice
